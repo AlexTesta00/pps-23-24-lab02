@@ -1,5 +1,7 @@
 package Task2
 
+import u02.Values.w
+
 object Exercise extends App:
 
     //Task 3a
@@ -8,7 +10,7 @@ object Exercise extends App:
         case _ => "negative"
 
     //Task 3b - 3c
-    def neg[X](pred: X => Boolean): (X => Boolean) = (element => !pred(element))
+    def neg[X](pred: X => Boolean): (X => Boolean) = (e => !pred(e))
 
     //Task 4
     val p1: Integer => Integer => Boolean => Boolean = x => y => z => x <= y == z
@@ -17,7 +19,7 @@ object Exercise extends App:
     def p4(x: Integer, y:Integer, z:Boolean): Boolean = x <= y == z
 
     //Task 5
-    def compose[A, B, C](f: (B => C), g: (A => B)): (A => C) = (number => f(g(number)))
+    def compose[A, B, C](f: (B => C), g: (A => B)): (A => C) = (n => f(g(n)))
 
     //Task 6
     @annotation.tailrec
@@ -27,21 +29,21 @@ object Exercise extends App:
     
     //Task 7
     enum Shape:
-        case Rectangle(widht:Double, height:Double)
-        case Circle(radius: Double)
-        case Square(side: Double)
+        case Rectangle(w:Double, h:Double)
+        case Circle(r: Double)
+        case Square(s: Double)
     
     object Shape:
 
-        def perimeter(shape: Shape): Double = shape match
-            case Rectangle(widht, height) => (widht * height) * 2
-            case Circle(radius) => 2 * math.Pi * radius
-            case Square(side) => side * 4
+        def perimeter(s: Shape): Double = s match
+            case Rectangle(w, h) => (w * h) * 2
+            case Circle(r) => 2 * math.Pi * r
+            case Square(s) => s * 4
         
-        def scale(shape: Shape, alpha: Double) : Shape = shape match
-            case Rectangle(widht, height) => Rectangle(widht * alpha, height * alpha)
-            case Circle(radius) => Circle(radius * alpha)
-            case Square(side) => Square(side * alpha)
+        def scale(s: Shape, a: Double) : Shape = s match
+            case Rectangle(w, h) => Rectangle(w * a, h * a)
+            case Circle(r) => Circle(r * a)
+            case Square(s) => Square(s * a)
 
     //Task 8
     object Optionals:
@@ -53,20 +55,20 @@ object Exercise extends App:
     import Optionals.Optional.*
 
     object Optional:
-        def isEmpty[A](optional: Optional[A]): Boolean = optional match
+        def isEmpty[A](o: Optional[A]): Boolean = o match
             case Empty() => true
             case _ => false
 
-        def orElse[A, B >: A](optional: Optional[A], default: B): B = optional match
+        def orElse[A, B >: A](o: Optional[A], default: B): B = o match
             case Maybe(value) => value
             case Empty() => default
 
-        def map[A, B](optional: Optional[A], f: A => B): Optional[B] = optional match
+        def map[A, B](o: Optional[A], f: A => B): Optional[B] = o match
             case Maybe(x) => Maybe(f(x))
             case _ => Empty()
 
-        def filter[A](optional: Optional[A])(predicate: A => Boolean): Optional[A] = optional match
-            case Maybe(x) if predicate(x) => Maybe(x)
+        def filter[A](o: Optional[A])(pred: A => Boolean): Optional[A] = o match
+            case Maybe(x) if pred(x) => Maybe(x)
             case _ => Empty()
 
 end Exercise
