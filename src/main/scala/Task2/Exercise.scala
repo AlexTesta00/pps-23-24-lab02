@@ -1,5 +1,7 @@
 package Task2
 
+import junit.framework.Test
+
 object Exercise extends App:
 
     //Exercise 3a
@@ -18,5 +20,29 @@ object Exercise extends App:
 
     //Exercise 5
     def compose[A, B, C](f: (B => C), g: (A => B)): (A => C) = (number => f(g(number)))
+
+    //Exercise 6
+    @annotation.tailrec
+    def gcd(a: Int, b: Int): Int = b match
+        case b if b == 0 => a
+        case _ => gcd(b, a % b) 
+    
+    //Exercise 7
+    enum Shape:
+        case Rectangle(widht:Double, height:Double)
+        case Circle(radius: Double)
+        case Square(side: Double)
+    
+    object Shape:
+
+        def perimeter(shape: Shape): Double = shape match
+            case Rectangle(widht, height) => (widht * height) * 2
+            case Circle(radius) => 2 * math.Pi * radius
+            case Square(side) => side * 4
+        
+        def scale(shape: Shape, alpha: Double) : Shape = shape match
+            case Rectangle(widht, height) => Rectangle(widht * alpha, height * alpha)
+            case Circle(radius) => Circle(radius * alpha)
+            case Square(side) => Square(side * alpha)
 
 end Exercise
