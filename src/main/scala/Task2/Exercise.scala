@@ -4,30 +4,30 @@ import u02.Values.w
 
 object Exercise extends App:
 
-    //Task 3a
+    //Task 3a - svolto da solo
     def positive(x: Int): String = x match
         case x if x >= 0 => "positive"
         case _ => "negative"
 
-    //Task 3b - 3c
+    //Task 3b - 3c - svolto da solo
     def neg[X](pred: X => Boolean): (X => Boolean) = (e => !pred(e))
 
-    //Task 4
+    //Task 4 - svolto da solo
     val p1: Integer => Integer => Boolean => Boolean = x => y => z => x <= y == z
     val p2: (Integer, Integer, Boolean) => (Boolean) = ((x,y,z) => (x <= y == z)) 
     def p3(x: Integer)(y: Integer)(z: Boolean): Boolean = x <= y == z
     def p4(x: Integer, y:Integer, z:Boolean): Boolean = x <= y == z
 
-    //Task 5
+    //Task 5 - svolto da solo
     def compose[A, B, C](f: (B => C), g: (A => B)): (A => C) = (n => f(g(n)))
 
-    //Task 6
+    //Task 6 - svolto da solo
     @annotation.tailrec
     def gcd(a: Int, b: Int): Int = b match
         case b if b == 0 => a
         case _ => gcd(b, a % b) 
-    
-    //Task 7
+     
+    //Task 7 - svolto da solo
     enum Shape:
         case Rectangle(w:Double, h:Double)
         case Circle(r: Double)
@@ -45,7 +45,7 @@ object Exercise extends App:
             case Circle(r) => Circle(r * a)
             case Square(s) => Square(s * a)
 
-    //Task 8
+    //Task 8 - svolto da solo
     object Optionals:
         enum Optional[A]:
             case Maybe(value: A)
